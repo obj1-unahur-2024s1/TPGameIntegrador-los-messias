@@ -2,6 +2,9 @@ import wollok.game.*
 import jugador.*
 import image.*
 import enemigos.*
+import estrella.*
+
+
 program messias {
 	
 	configuracion.iniciar()

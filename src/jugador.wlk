@@ -1,5 +1,6 @@
 import wollok.game.*
 import enemigos.*
+import estrella.*
 
 object configuracion{
 	method iniciar(){
@@ -9,6 +10,7 @@ object configuracion{
 	game.boardGround("fondo.png")
 	game.cellSize(50)
 	game.addVisual(jugador)
+	game.addVisual(estrella)
 	game.addVisual(reloj)
 	game.addVisual(enemigo)
 	game.onTick(1000,"moverse",{enemigo.moverseAleatoriamente()})
@@ -64,10 +66,10 @@ object suelo{
 
 object jugador {
 	var property position = game.at(24,1)
-	var property image = "jugador.png"
+	var property image = "messi.png"
 	
-	/*method image(unaImagen){ image = unaImagen}
-	method image()= image*/
+	method image(unaImagen){ image = unaImagen}
+	method image()= image
 	
 	method siguienteEscalon(){ //SUBE AL SIGUIENTE ESCALON SOLO POR LAS ESCALERAS
 		if (position == game.at(0,1) or position == game.at(24,5)){
@@ -78,7 +80,7 @@ object jugador {
 	method saltar(){ //SALTA EN DIAGONAL (EL SALTO DURA 1 SEGUNDO, CUALQ COSA LO MODIFICAMOS Y LE AGREGAMOS MAS DURACION)
 		if (position.y() == suelo.position().y()){
 			self.subir()
-		if(image == "jugador.png"){
+		if(image == "messi.png"){
 			self.moverALaIzquierda()	
 		}else{
 			self.moverALaDerecha()
@@ -90,22 +92,21 @@ object jugador {
 	method bajar(){
 		if (position.y() != suelo.position().y()){
 		position = position.down(2)
-	}
+	    }
 	}
 	method subir(){
 		position = position.up(2)
 	}
 	
 	method moverALaIzquierda(){
-		self.image("jugador.png")
+		self.image("messi.png")
 		if(position.x()>0){
 			position = position.left(1)
-		}
-		
+		}	
 	}
 	
 	method moverALaDerecha(){
-		self.image("jugador_mirando_derecha.png")
+		self.image("messi.png")
 		if(position.x()<24){
 			position = position.right(1)
 		}

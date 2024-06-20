@@ -2,7 +2,7 @@ import wollok.game.*
 
 object enemigo{
 	var property position = game.at(0,1)
-	var property image = "jugador.png"
+	var property image = "ronaldo.arg.png"
 	var direccionAleatoria
 	
 	method derechaOIzquierda(){
@@ -19,7 +19,7 @@ object enemigo{
 	}
 	
 	method moverALaIzquierda(){
-		self.image("jugador.png")
+		self.image("ronaldo.arg.png")
 		if(position.x()>0){
 			position = position.left(1)
 		}
@@ -27,7 +27,7 @@ object enemigo{
 	}
 	
 	method moverALaDerecha(){
-		self.image("jugador_mirando_derecha.png")
+		self.image("ronaldo.arg.png")
 		if(position.x()<20){
 			position = position.right(1)
 		}
