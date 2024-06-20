@@ -1,0 +1,13 @@
+import wollok.game.*
+import jugador.*
+import image.*
+import enemigos.*
+program messias {
+	
+	configuracion.iniciar()
+	reloj.iniciar()
+	teclado.comandosTeclado()
+	game.start()
+
+}
+
