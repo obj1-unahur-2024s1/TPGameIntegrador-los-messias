@@ -1,6 +1,5 @@
 import wollok.game.*
 import jugador.*
-import image.*
 import enemigos.*
 import estrella.*
 

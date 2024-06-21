@@ -1,4 +1,5 @@
 import wollok.game.*
+import jugador.*
 
 object enemigo{
 	var property position = game.at(4,1)
@@ -35,4 +36,8 @@ object enemigo{
 			position = position.right(1)
 		}
 }
+
+	/*method quitarVida(unaVida){
+		jugador.quitarVida(unaVida)
+	}*/
 }

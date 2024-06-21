@@ -8,3 +8,8 @@ object estrella{
 	
 	method image(){return "estrella.png"}
 }
+
+class Vida{
+	var property image = "pelota23x23.png"
+	var property position = game.center()
+}

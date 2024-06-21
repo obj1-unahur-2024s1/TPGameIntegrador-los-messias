@@ -2,7 +2,15 @@ import wollok.game.*
 import enemigos.*
 import estrella.*
 
+const vida1= new Vida(position = game.at(24,14))
+const vida2= new Vida(position = game.at(23,14))
+const vida3= new Vida(position = game.at(22,14))
+const vida4= new Vida(position = game.at(21,14))
+
 object configuracion{
+	
+	//const vida = new Vida()
+	
 	method iniciar(){
 	game.title("El Messias")
 	game.width(25)
@@ -13,10 +21,16 @@ object configuracion{
 	game.addVisual(estrella)
 	game.addVisual(reloj)
 	game.addVisual(enemigo)
+	game.addVisual(vida1)
+	game.addVisual(vida2)
+	game.addVisual(vida3)
+	game.addVisual(vida4)
 	game.onTick(1000,"moverse",{enemigo.moverseAleatoriamente()})
-	//game.addVisual(tiempo)
+	game.whenCollideDo(enemigo,{ jugador =>
+		jugador.quitarVida(vida1)
+	})
 	}
-	}
+}
 
 
 object teclado{
@@ -48,12 +62,7 @@ object reloj {
 		game.removeTickEvent("tiempo")
 	}
 }
-/* 
-object tiempo{
-	method position()= game.at(0, game.height()-1)
-	method text()= "TIEMPO"
 
-}*/
 
 object suelo{
 	var nivelSuelo = 1
@@ -68,6 +77,15 @@ object jugador {
 	var property position = game.at(24,1)
 	var property image = "jugador.png"
 	
+	const vidasJugador = [vida1, vida2, vida3, vida4]
+	method vidasJugador()= vidasJugador
+	method agregarVida(unaVida){ vidasJugador.add(unaVida)}
+	method quitarVida(unaVida){
+		if( not vidasJugador.isEmpty())
+		game.removeVisual(unaVida)
+		vidasJugador.remove(unaVida)
+	}
+	
 	method image(unaImagen){ image = unaImagen}
 	method image()= image
 	
@@ -77,7 +95,7 @@ object jugador {
 		suelo.subirNivel()}
 	}
 	
-	method saltar(){ //SALTA EN DIAGONAL (EL SALTO DURA 1 SEGUNDO, CUALQ COSA LO MODIFICAMOS Y LE AGREGAMOS MAS DURACION)
+	method saltar(){ 
 		if (position.y() == suelo.position().y()){
 			self.subir()
 		if(image == "jugador.png"){
