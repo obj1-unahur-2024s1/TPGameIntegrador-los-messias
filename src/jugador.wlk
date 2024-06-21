@@ -66,7 +66,7 @@ object suelo{
 
 object jugador {
 	var property position = game.at(24,1)
-	var property image = "messi.png"
+	var property image = "jugador.png"
 	
 	method image(unaImagen){ image = unaImagen}
 	method image()= image
@@ -80,7 +80,7 @@ object jugador {
 	method saltar(){ //SALTA EN DIAGONAL (EL SALTO DURA 1 SEGUNDO, CUALQ COSA LO MODIFICAMOS Y LE AGREGAMOS MAS DURACION)
 		if (position.y() == suelo.position().y()){
 			self.subir()
-		if(image == "messi.png"){
+		if(image == "jugador.png"){
 			self.moverALaIzquierda()	
 		}else{
 			self.moverALaDerecha()
@@ -99,14 +99,14 @@ object jugador {
 	}
 	
 	method moverALaIzquierda(){
-		self.image("messi.png")
+		self.image("jugador.png")
 		if(position.x()>0){
 			position = position.left(1)
 		}	
 	}
 	
 	method moverALaDerecha(){
-		self.image("messi.png")
+		self.image("jugador_mirando_derecha.png")
 		if(position.x()<24){
 			position = position.right(1)
 		}
