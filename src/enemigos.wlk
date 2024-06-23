@@ -5,7 +5,10 @@ import estrella.*
 import obstaculos.*
 
 const cruyff= new EnemigoHolanda(position = game.at(6,1),listaConos=[cono1,cono2,cono3,cono4])
-const mbappe= new EnemigoFrancia(position = game.at(4,5),listaConos=[cono1,cono2,cono3,cono4])
+const cruyff1= new EnemigoHolanda(position = game.at(12,5),listaConos=[cono1,cono2,cono3,cono4])
+const cruyff2= new EnemigoHolanda(position = game.at(20,9),listaConos=[cono1,cono2,cono3,cono4])
+
+
 
 
 class Enemigo{
@@ -13,10 +16,12 @@ class Enemigo{
 	var direccionAleatoria="Derecha"
 	var property listaConos=[]
 	
-	/*method verificarConos()=listaConos.any({c=>c.position().x()== position.x()-1}) or listaConos.any({c=>c.position().x()== position.x()+1})*/
+	method verificarConosDerecha()=listaConos.any({c=>c.position().x()== position.x()+1 && c.position().y()== position.y()})
+	
+	method verificarConosIzquierda()=listaConos.any({c=>c.position().x()== position.x()-1 && c.position().y()== position.y()})
 	
 	method derechaOIzquierda(){
-		const lista= ["Derecha","Izquierda","Derecha","Derecha","Izquierda"]
+		const lista= ["Derecha","Izquierda","Derecha","Izquierda"]
 		direccionAleatoria = lista.anyOne() 
 	}
 	
@@ -60,13 +65,13 @@ class EnemigoHolanda inherits Enemigo{
 	
 	override method moverALaDerecha(){
 		self.image("CRUYFFder.png")
-		if(position.x()<20 && not listaConos.any({c=>c.position().x()== position.x()+1})){
+		if(position.x()<20 && not self.verificarConosDerecha()){
 			position = position.right(1)
 			
 			}}
 	 override method moverALaIzquierda(){
 		self.image("CRUYFF.png")
-		if(position.x()>4&& not listaConos.any({c=>c.position().x()== position.x()-1})){
+		if(position.x()>4&& not self.verificarConosIzquierda()){
 			position = position.left(1)
 		}
 		
@@ -80,13 +85,13 @@ class EnemigoFrancia inherits Enemigo{
 	
 	 override method moverALaDerecha(){
 		self.image("mbappeder.png")
-		if(position.x()<20&& not listaConos.any({c=>c.position().x()== position.x()+1})){
+		if(position.x()<20&& not self.verificarConosDerecha()){
 			position = position.right(1)
 	}
 	}
 	override method moverALaIzquierda(){
 		self.image("mbappeizq.png")
-		if(position.x()>4&& not listaConos.any({c=>c.position().x()== position.x()-1})){
+		if(position.x()>4&& not self.verificarConosIzquierda()){
 			position = position.left(1)
 		}
 		}
@@ -98,14 +103,14 @@ class EnemigoAlemania inherits Enemigo{
 		
 		override method moverALaDerecha(){
 		self.image("BECKENder.png")
-		if(position.x()<20&& not listaConos.any({c=>c.position().x()== position.x()+1})){
+		if(position.x()<20&& not self.verificarConosDerecha()){
 			position = position.right(1)
 		}
 		}
 		
 		override method moverALaIzquierda(){
 		self.image("BECKEN.png")
-		if(position.x()>4&& not listaConos.any({c=>c.position().x()== position.x()-1})){
+		if(position.x()>4&& not self.verificarConosIzquierda()){
 			position = position.left(1)
 		}		
 	    }
