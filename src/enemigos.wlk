@@ -4,10 +4,16 @@ import configuraciones.*
 import estrella.*
 import obstaculos.*
 
-object enemigo{
-	var property position = game.at(4,1)
-	var property image = "cristiano_mirando_derecha.png"
-	var direccionAleatoria
+const cruyff= new EnemigoHolanda(position = game.at(6,1),listaConos=[cono1,cono2,cono3,cono4])
+const mbappe= new EnemigoFrancia(position = game.at(4,5),listaConos=[cono1,cono2,cono3,cono4])
+
+
+class Enemigo{
+	var property position/* = game.at(4,1)*/
+	var direccionAleatoria="Derecha"
+	var property listaConos=[]
+	
+	/*method verificarConos()=listaConos.any({c=>c.position().x()== position.x()-1}) or listaConos.any({c=>c.position().x()== position.x()+1})*/
 	
 	method derechaOIzquierda(){
 		const lista= ["Derecha","Izquierda","Derecha","Derecha","Izquierda"]
@@ -25,21 +31,83 @@ object enemigo{
 		
 	}
 	
-	method moverALaIzquierda(){
-		self.image("cristiano.png")
-		if(position.x()>4){
-			position = position.left(1)
+	method moverALaIzquierda()
+	method moverALaDerecha()
+
+	method cambiarDireccion(){
+		if(direccionAleatoria=="Derecha"){
+		self.moverALaIzquierda()}
+		else if (direccionAleatoria=="Izquierda"){
+			self.moverALaDerecha()
 		}
 	}
+
+		method chocar(){
+		if (self.position()==jugador.position()){
+			jugador.quitarVida()}}
+		/*	else if (self.position()==unCono.position()){self.cambiarDireccion()}
+			
 	
-	method moverALaDerecha(){
-		self.image("cristiano_mirando_derecha.png")
-		if(position.x()<20){
+	}*/
+	
+	}
+	
+	
+	
+class EnemigoHolanda inherits Enemigo{
+	var property image = "CRUYFF.png"
+	
+	
+	override method moverALaDerecha(){
+		self.image("CRUYFFder.png")
+		if(position.x()<20 && not listaConos.any({c=>c.position().x()== position.x()+1})){
 			position = position.right(1)
+			
+			}}
+	 override method moverALaIzquierda(){
+		self.image("CRUYFF.png")
+		if(position.x()>4&& not listaConos.any({c=>c.position().x()== position.x()-1})){
+			position = position.left(1)
+		}
+		
+		}
+		
+		}
+	
+	
+class EnemigoFrancia inherits Enemigo{
+	var property image = "mbappeder.png"
+	
+	 override method moverALaDerecha(){
+		self.image("mbappeder.png")
+		if(position.x()<20&& not listaConos.any({c=>c.position().x()== position.x()+1})){
+			position = position.right(1)
+	}
+	}
+	override method moverALaIzquierda(){
+		self.image("mbappeizq.png")
+		if(position.x()>4&& not listaConos.any({c=>c.position().x()== position.x()-1})){
+			position = position.left(1)
+		}
 		}
 }
+	
+	
+class EnemigoAlemania inherits Enemigo{
+	var property image = "BECKEN.png"
+		
+		override method moverALaDerecha(){
+		self.image("BECKENder.png")
+		if(position.x()<20&& not listaConos.any({c=>c.position().x()== position.x()+1})){
+			position = position.right(1)
+		}
+		}
+		
+		override method moverALaIzquierda(){
+		self.image("BECKEN.png")
+		if(position.x()>4&& not listaConos.any({c=>c.position().x()== position.x()-1})){
+			position = position.left(1)
+		}		
+	    }
 
-	//method quitarVida(unaVida){
-		//jugador.quitarVida(unaVida)
-	//}
 }

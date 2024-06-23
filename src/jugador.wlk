@@ -9,7 +9,7 @@ const vida2= new Vida(position = game.at(23,14))
 const vida3= new Vida(position = game.at(22,14))
 const vida4= new Vida(position = game.at(21,14))
 const cono1= new Cono(position = game.at(12,1))
-const cono2= new Cono(position = game.at(15,5))
+const cono2= new Cono(position = game.at(5,1))
 const cono3= new Cono(position = game.at(5,9))
 const cono4= new Cono(position = game.at(13,9))
 
@@ -29,7 +29,7 @@ object jugador {
 	}
 	
 	method ultimaVida(){
-		return vidasJugador.last()
+		return vidasJugador.first()
 	}
 	
 	method image(unaImagen){ image = unaImagen}
