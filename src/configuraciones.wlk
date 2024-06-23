@@ -3,37 +3,34 @@ import jugador.*
 import estrella.*
 import enemigos.*
 import obstaculos.*
+import niveles.*
 
 object imagenIntroduccion {
 	
 	const property image = "instrucciones.png"
 	var property position = game.center()
 
-	method introduccion(){
-		game.addVisual(self)
-		game.width(25)
-		game.height(15)
-		game.cellSize(50)
-		game.title("El Messias")
-		game.boardGround("fondo.png")
-		keyboard.enter().onPressDo({nivel1.configNivel1()})
-	}
-}
-
-object nivel1{
-	const property image = "nivel1.png"
-	var property position = game.at(2,2)
-	
-	method configNivel1(){
-	game.removeVisual(imagenIntroduccion)
-	game.addVisual(self)
-	keyboard.num1().onPressDo({configuracion.iniciar()})
-	}
-
 }
 
 
 object configuracion{
+	
+   method introduccion(){
+	game.addVisual(imagenIntroduccion)
+	game.width(25)
+	game.height(15)
+	game.cellSize(50)
+	game.title("El Messias")
+	game.boardGround("fondo.png")
+	keyboard.enter().onPressDo({nivel1.configNivel1()})
+    }
+    
+    method reiniciar(){
+     game.removeVisual(gameOver)
+     game.clear()
+     game.addVisual(nivel1)
+     self.iniciar()
+    }
 	
 	method iniciar(){
 	game.removeVisual(nivel1)
@@ -51,13 +48,14 @@ object configuracion{
 	game.addVisual(cono2)
 	game.addVisual(cono3)
 	game.addVisual(cono4)
+	gameOver.perderEtapa()
 	game.onTick(2000,"moverse",{cruyff.moverseAleatoriamente()})
 	game.onTick(2000,"moverse",{cruyff1.moverseAleatoriamente()})
 	game.onTick(2000,"moverse",{cruyff2.moverseAleatoriamente()})
 	game.onCollideDo(jugador,{ jug =>
 		jug.chocar() 
 		})
-	}
+	}	
 }
 
 object teclado{
@@ -66,12 +64,13 @@ object teclado{
 	keyboard.up().onPressDo{jugador.saltar()}
 	keyboard.left().onPressDo{jugador.moverALaIzquierda()}
 	keyboard.right().onPressDo{jugador.moverALaDerecha()}
-	
 	}
 }
 
 object reloj {
 	var tiempo = 0
+	
+	method tiempo()= tiempo
 	
 	method text() = tiempo.toString()
 	method position() = game.at(2, game.height()-1)

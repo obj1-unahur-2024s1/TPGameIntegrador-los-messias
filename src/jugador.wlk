@@ -3,6 +3,7 @@ import enemigos.*
 import estrella.*
 import configuraciones.*
 import obstaculos.*
+import niveles.*
 
 const vida1= new Vida(position = game.at(24,14))
 const vida2= new Vida(position = game.at(23,14))
@@ -17,15 +18,21 @@ object jugador {
 	
 	var property position = game.at(24,1)
 	var property image = "jugador.png"
-	
 	const vidasJugador = [vida1, vida2, vida3, vida4]
+	
+	method estaVivo(){
+		return not vidasJugador.isEmpty()
+	}
+	
 	method vidasJugador()= vidasJugador
 	method agregarVida(unaVida){ vidasJugador.add(unaVida)}
 	
 	method quitarVida(){
-		if( not vidasJugador.isEmpty())
-		game.removeVisual(self.ultimaVida())
-		vidasJugador.remove(self.ultimaVida())
+		if( not vidasJugador.isEmpty()){
+			game.removeVisual(self.ultimaVida())
+		    vidasJugador.remove(self.ultimaVida())
+		}
+		else {gameOver.perderEtapa()}
 	}
 	
 	method ultimaVida(){

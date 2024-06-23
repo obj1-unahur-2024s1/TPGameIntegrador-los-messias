@@ -7,7 +7,7 @@ import configuraciones.*
 
 program messias {
 	
-	imagenIntroduccion.introduccion()
+	configuracion.introduccion()
 	reloj.iniciar()
 	teclado.comandosTeclado()
 	game.start()
