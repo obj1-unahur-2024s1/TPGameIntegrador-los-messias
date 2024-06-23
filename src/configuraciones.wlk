@@ -2,6 +2,7 @@ import wollok.game.*
 import jugador.*
 import estrella.*
 import enemigos.*
+import obstaculos.*
 
 object imagenIntroduccion {
 	
@@ -33,6 +34,7 @@ object nivel1{
 
 
 object configuracion{
+	
 	method iniciar(){
 	game.removeVisual(nivel1)
 	game.addVisual(jugador)
@@ -43,10 +45,14 @@ object configuracion{
 	game.addVisual(vida2)
 	game.addVisual(vida3)
 	game.addVisual(vida4)
+	game.addVisual(cono1)
+	game.addVisual(cono2)
+	game.addVisual(cono3)
+	game.addVisual(cono4)
 	game.onTick(1000,"moverse",{enemigo.moverseAleatoriamente()})
-	game.whenCollideDo(jugador,{ jugador =>
-		jugador.quitarVida(vida1)
-	})
+	game.onCollideDo(jugador,{ jug =>
+		jug.chocar() 
+		})
 	}
 }
 
@@ -56,6 +62,7 @@ object teclado{
 	keyboard.up().onPressDo{jugador.saltar()}
 	keyboard.left().onPressDo{jugador.moverALaIzquierda()}
 	keyboard.right().onPressDo{jugador.moverALaDerecha()}
+	
 	}
 }
 

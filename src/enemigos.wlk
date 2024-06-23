@@ -1,5 +1,8 @@
 import wollok.game.*
 import jugador.*
+import configuraciones.*
+import estrella.*
+import obstaculos.*
 
 object enemigo{
 	var property position = game.at(4,1)
@@ -27,7 +30,6 @@ object enemigo{
 		if(position.x()>4){
 			position = position.left(1)
 		}
-		
 	}
 	
 	method moverALaDerecha(){
@@ -37,7 +39,7 @@ object enemigo{
 		}
 }
 
-	/*method quitarVida(unaVida){
-		jugador.quitarVida(unaVida)
-	}*/
+	//method quitarVida(unaVida){
+		//jugador.quitarVida(unaVida)
+	//}
 }

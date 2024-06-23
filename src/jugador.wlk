@@ -2,25 +2,34 @@ import wollok.game.*
 import enemigos.*
 import estrella.*
 import configuraciones.*
+import obstaculos.*
 
 const vida1= new Vida(position = game.at(24,14))
 const vida2= new Vida(position = game.at(23,14))
 const vida3= new Vida(position = game.at(22,14))
 const vida4= new Vida(position = game.at(21,14))
-
-
+const cono1= new Cono(position = game.at(12,1))
+const cono2= new Cono(position = game.at(15,5))
+const cono3= new Cono(position = game.at(5,9))
+const cono4= new Cono(position = game.at(13,9))
 
 object jugador {
+	
 	var property position = game.at(24,1)
 	var property image = "jugador.png"
 	
 	const vidasJugador = [vida1, vida2, vida3, vida4]
 	method vidasJugador()= vidasJugador
 	method agregarVida(unaVida){ vidasJugador.add(unaVida)}
-	method quitarVida(unaVida){
+	
+	method quitarVida(){
 		if( not vidasJugador.isEmpty())
-		game.removeVisual(unaVida)
-		vidasJugador.remove(unaVida)
+		game.removeVisual(self.ultimaVida())
+		vidasJugador.remove(self.ultimaVida())
+	}
+	
+	method ultimaVida(){
+		return vidasJugador.last()
 	}
 	
 	method image(unaImagen){ image = unaImagen}
@@ -44,6 +53,16 @@ object jugador {
 		game.schedule(500, {self.bajar()})		
 	}}
 	
+	method agarrarEstrellaSiHay(){
+	  if (position == estrella.position()){
+	    game.removeVisual(estrella)
+	    game.say(self, "Genial, tienes la estrella")
+	  }
+	}
+	
+	
+	//// movimientos del jugador 
+	
 	method bajar(){
 		if (position.y() != suelo.position().y()){
 		position = position.down(2)
@@ -57,6 +76,7 @@ object jugador {
 		self.image("jugador.png")
 		if(position.x()>0){
 			position = position.left(1)
+			self.agarrarEstrellaSiHay()
 		}	
 	}
 	
@@ -64,6 +84,7 @@ object jugador {
 		self.image("jugador_mirando_derecha.png")
 		if(position.x()<24){
 			position = position.right(1)
+			self.agarrarEstrellaSiHay()
 		}
 	}
 		
