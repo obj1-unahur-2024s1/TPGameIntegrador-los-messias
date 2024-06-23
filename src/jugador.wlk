@@ -13,6 +13,13 @@ const cono1= new Cono(position = game.at(12,1))
 const cono2= new Cono(position = game.at(5,1))
 const cono3= new Cono(position = game.at(5,9))
 const cono4= new Cono(position = game.at(13,9))
+const banderaHolandaDeArriba= new BanderaHolanda(position = game.at(9,14), image = "banderaHolanda.jpg")
+const banderaAlemaniaDeArriba= new BanderaAlemania(position = game.at(11,14), image = "banderaAlemania.jpg")
+const banderaFranciaDeArriba= new BanderaFrancia(position = game.at(13,14), image = "banderaFrancia.jpg")
+
+const banderaHolandaObjetivo=new BanderaHolanda(position = game.at(0,9), image = "banderaHolanda.jpg")
+const banderaAlemaniaObjetivo=new BanderaAlemania(position = game.at(0,9), image = "banderaAlemania.jpg")
+const banderaFranciaObjetivo= new BanderaFrancia(position = game.at(0,9), image = "banderaFrancia.jpg")
 
 object jugador {
 	
@@ -33,6 +40,12 @@ object jugador {
 		    vidasJugador.remove(self.ultimaVida())
 		}
 		else {gameOver.perderEtapa()}
+	}
+	
+	method perderPorTiempo(){
+		if(reloj.tiempoPerder()){
+			gameOver.perderEtapa()
+		}
 	}
 	
 	method ultimaVida(){

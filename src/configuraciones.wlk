@@ -48,13 +48,15 @@ object configuracion{
 	game.addVisual(cono2)
 	game.addVisual(cono3)
 	game.addVisual(cono4)
-	gameOver.perderEtapa()
+	game.onTick(1000,"perder",{jugador.perderPorTiempo()})
 	game.onTick(2000,"moverse",{cruyff.moverseAleatoriamente()})
 	game.onTick(2000,"moverse",{cruyff1.moverseAleatoriamente()})
 	game.onTick(2000,"moverse",{cruyff2.moverseAleatoriamente()})
-	game.onCollideDo(jugador,{ jug =>
-		jug.chocar() 
-		})
+	game.onCollideDo(jugador,{ jug =>jug.chocar()})
+	game.addVisual(banderaHolandaDeArriba)
+	game.addVisual(banderaAlemaniaDeArriba)
+	game.addVisual(banderaFranciaDeArriba)
+	game.addVisual(banderaHolandaObjetivo)
 	}	
 }
 
@@ -64,13 +66,14 @@ object teclado{
 	keyboard.up().onPressDo{jugador.saltar()}
 	keyboard.left().onPressDo{jugador.moverALaIzquierda()}
 	keyboard.right().onPressDo{jugador.moverALaDerecha()}
+	keyboard.space().onPressDo{configuracion.reiniciar()}
 	}
 }
 
 object reloj {
 	var tiempo = 0
 	
-	method tiempo()= tiempo
+	method tiempoPerder()= tiempo == 120
 	
 	method text() = tiempo.toString()
 	method position() = game.at(2, game.height()-1)

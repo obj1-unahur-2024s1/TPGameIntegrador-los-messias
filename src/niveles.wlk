@@ -12,13 +12,12 @@ object gameOver{
    var property position = game.at(2,2)
    
    method perderEtapa(){
-   	  if ( not jugador.estaVivo() or reloj.tiempo()== 5 ){
+   	  if ( not jugador.estaVivo() or reloj.tiempoPerder() ){
 	  game.addVisual(self)
-	  keyboard.space().onPressDo{configuracion.reiniciar()}
+	  }
 	  }
 	}
    
-}
 
 object nivel1{
 	
