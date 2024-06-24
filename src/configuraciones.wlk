@@ -1,6 +1,6 @@
 import wollok.game.*
 import jugador.*
-import estrella.*
+import clasesGenerales.*
 import enemigos.*
 import obstaculos.*
 import niveles.*
@@ -10,6 +10,11 @@ object imagenIntroduccion {
 	const property image = "instrucciones.png"
 	var property position = game.center()
 
+}
+
+object finDelJuego{
+	var property position = game.at(2,2)
+	method image()="finDelJuego.png"
 }
 
 
@@ -33,6 +38,8 @@ object configuracion{
     }
 	
 	method iniciar(){
+	reloj.iniciar()
+	teclado.comandosTeclado()
 	game.removeVisual(nivel1)
 	game.addVisual(jugador)
 	game.addVisual(estrella)
@@ -73,7 +80,7 @@ object teclado{
 object reloj {
 	var tiempo = 0
 	
-	method tiempoPerder()= tiempo == 120
+	method tiempoPerder()= tiempo == 100
 	
 	method text() = tiempo.toString()
 	method position() = game.at(2, game.height()-1)
@@ -92,8 +99,9 @@ object reloj {
 
 
 object suelo{
-	var nivelSuelo = 1
+	var property nivelSuelo = 1
 	var property position = game.origin().up(nivelSuelo)
+	
 	method subirNivel(){
 		nivelSuelo = nivelSuelo + 4
 		position =  game.origin().up(nivelSuelo)

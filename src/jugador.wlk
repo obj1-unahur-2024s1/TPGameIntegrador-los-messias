@@ -1,6 +1,6 @@
 import wollok.game.*
 import enemigos.*
-import estrella.*
+import clasesGenerales.*
 import configuraciones.*
 import obstaculos.*
 import niveles.*
@@ -23,23 +23,27 @@ const banderaFranciaObjetivo= new BanderaFrancia(position = game.at(0,9), image 
 
 object jugador {
 	
-	var property position = game.at(24,1)
+	var property position = self.posicionInicial()
 	var property image = "jugador.png"
 	var vidasJugador = [vida1, vida2, vida3, vida4]
 	
+	method posicionInicial()=game.at(24,1)
 	method reestablecer(){
-		position = game.at(24,1)
+		position = self.posicionInicial()
+		suelo.nivelSuelo(1)
+		suelo.position(game.origin().up(suelo.nivelSuelo()))
 		vidasJugador.clear()
 		vidasJugador = [vida1, vida2, vida3, vida4]
-		self.agregarVidaVisual(vida1)
-		self.agregarVidaVisual(vida2)
-		self.agregarVidaVisual(vida3)
-		self.agregarVidaVisual(vida4)
+		self.agregarObjeto(estrella)
+		self.agregarObjeto(vida1)
+		self.agregarObjeto(vida2)
+		self.agregarObjeto(vida3)
+		self.agregarObjeto(vida4)
 		
 	}
-	method agregarVidaVisual(unaVida){
-		if (not game.hasVisual(unaVida)){
-			game.addVisual(unaVida)
+	method agregarObjeto(unObjeto){
+		if (not game.hasVisual(unObjeto)){
+			game.addVisual(unObjeto)
 		}
 	}
 
@@ -91,7 +95,7 @@ object jugador {
 	}}
 	
 	method agarrarEstrellaSiHay(){
-	  if (position == estrella.position()){
+	  if (position == estrella.position() && game.hasVisual(estrella)){
 	    game.removeVisual(estrella)
 	    game.say(self, "Genial, tienes la estrella")
 	  }

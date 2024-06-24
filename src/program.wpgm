@@ -1,7 +1,7 @@
 import wollok.game.*
 import jugador.*
 import enemigos.*
-import estrella.*
+import clasesGenerales.*
 import configuraciones.*
 import obstaculos.*
 
@@ -9,8 +9,6 @@ import obstaculos.*
 program messias {
 	
 	configuracion.introduccion()
-	reloj.iniciar()
-	teclado.comandosTeclado()
 	game.start()
 
 }

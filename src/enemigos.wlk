@@ -1,16 +1,29 @@
 import wollok.game.*
 import jugador.*
 import configuraciones.*
-import estrella.*
+import clasesGenerales.*
 import obstaculos.*
 
 const cruyff= new EnemigoHolanda(position = game.at(6,1),listaConos=[cono1,cono2,cono3,cono4])
 const cruyff1= new EnemigoHolanda(position = game.at(12,5),listaConos=[cono1,cono2,cono3,cono4])
 const cruyff2= new EnemigoHolanda(position = game.at(20,9),listaConos=[cono1,cono2,cono3,cono4])
 
-const becken = new EnemigoAlemania(position = game.at(3,1), listaConos=[cono1,cono2,cono3,cono4])
+const becken = new EnemigoAlemania(position = game.at(6,1), listaConos=[cono1,cono2,cono3,cono4])
 const becken1 = new EnemigoAlemania(position = game.at(3,5), listaConos=[cono1,cono2,cono3,cono4])
-const becken2 = new EnemigoAlemania(position = game.at(4,9), listaConos=[cono1,cono2,cono3,cono4])
+const becken2 = new EnemigoAlemania(position = game.at(8,9), listaConos=[cono1,cono2,cono3,cono4])
+const becken3 = new EnemigoAlemania(position = game.at(21,9), listaConos=[cono1,cono2,cono3,cono4])
+const becken4 = new EnemigoAlemania(position = game.at(18,5), listaConos=[cono1,cono2,cono3,cono4])
+const becken5 = new EnemigoAlemania(position = game.at(20,1), listaConos=[cono1,cono2,cono3,cono4])
+
+const mbappe = new EnemigoFrancia(position = game.at(6,1), listaConos=[cono1,cono2,cono3,cono4])
+const mbappe1 = new EnemigoFrancia(position = game.at(4,5), listaConos=[cono1,cono2,cono3,cono4])
+const mbappe2 = new EnemigoFrancia(position = game.at(8,9), listaConos=[cono1,cono2,cono3,cono4])
+const mbappe3 = new EnemigoFrancia(position = game.at(21,9), listaConos=[cono1,cono2,cono3,cono4])
+const mbappe4 = new EnemigoFrancia(position = game.at(14,5), listaConos=[cono1,cono2,cono3,cono4])
+const mbappe5 = new EnemigoFrancia(position = game.at(20,1), listaConos=[cono1,cono2,cono3,cono4])
+const mbappe6 = new EnemigoFrancia(position = game.at(3,1), listaConos=[cono1,cono2,cono3,cono4])
+const mbappe7 = new EnemigoFrancia(position = game.at(17,9), listaConos=[cono1,cono2,cono3,cono4])
+const mbappe8 = new EnemigoFrancia(position = game.at(20,5), listaConos=[cono1,cono2,cono3,cono4])
 
 
 

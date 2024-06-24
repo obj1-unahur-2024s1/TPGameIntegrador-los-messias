@@ -1,7 +1,7 @@
 import wollok.game.*
 import jugador.*
 import enemigos.*
-import estrella.*
+import clasesGenerales.*
 
 class Cono{/*o class Obstaculos (abstracta) y class Cono inherits Obstaculos */	
 	const property position
