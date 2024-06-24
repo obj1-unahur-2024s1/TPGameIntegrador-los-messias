@@ -25,7 +25,24 @@ object jugador {
 	
 	var property position = game.at(24,1)
 	var property image = "jugador.png"
-	const vidasJugador = [vida1, vida2, vida3, vida4]
+	var vidasJugador = [vida1, vida2, vida3, vida4]
+	
+	method reestablecer(){
+		position = game.at(24,1)
+		vidasJugador.clear()
+		vidasJugador = [vida1, vida2, vida3, vida4]
+		self.agregarVidaVisual(vida1)
+		self.agregarVidaVisual(vida2)
+		self.agregarVidaVisual(vida3)
+		self.agregarVidaVisual(vida4)
+		
+	}
+	method agregarVidaVisual(unaVida){
+		if (not game.hasVisual(unaVida)){
+			game.addVisual(unaVida)
+		}
+	}
+
 	
 	method estaVivo(){
 		return not vidasJugador.isEmpty()

@@ -27,9 +27,9 @@ object configuracion{
     
     method reiniciar(){
      game.removeVisual(gameOver)
-     game.clear()
-     game.addVisual(nivel1)
-     self.iniciar()
+     reloj.detener()
+     reloj.iniciar()
+     jugador.reestablecer()
     }
 	
 	method iniciar(){
@@ -40,10 +40,10 @@ object configuracion{
 	game.addVisual(cruyff)
 	game.addVisual(cruyff1)
 	game.addVisual(cruyff2)
-	game.addVisual(vida1)
-	game.addVisual(vida2)
-	game.addVisual(vida3)
-	game.addVisual(vida4)
+	game.addVisual(jugador.vidasJugador().get(0))
+	game.addVisual(jugador.vidasJugador().get(1))
+	game.addVisual(jugador.vidasJugador().get(2))
+	game.addVisual(jugador.vidasJugador().get(3))
 	game.addVisual(cono1)
 	game.addVisual(cono2)
 	game.addVisual(cono3)
@@ -73,7 +73,7 @@ object teclado{
 object reloj {
 	var tiempo = 0
 	
-	method tiempoPerder()= tiempo == 120
+	method tiempoPerder()= tiempo == 10
 	
 	method text() = tiempo.toString()
 	method position() = game.at(2, game.height()-1)
