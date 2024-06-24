@@ -33,25 +33,29 @@ class Bandera{
 
 class BanderaHolanda inherits Bandera{
 	override method chocar(){
-		banderaHolandaDeArriba.cambiarAEstrella()
 		if (not game.hasVisual(estrella)){
+		banderaHolandaDeArriba.cambiarAEstrella()
 		nivel2.iniciarNivel2() }
-		
+		else{game.say(jugador, "Olvidaste agarrar la estrella")}
 	}
 }
 
 class BanderaAlemania inherits Bandera{
-	override method chocar(){
-		banderaAlemaniaDeArriba.cambiarAEstrella()
+	override method chocar(){		
 		if (not game.hasVisual(estrella)){
+			banderaAlemaniaDeArriba.cambiarAEstrella()
 			nivel3.iniciarNivel3()
 		}
+		else{game.say(jugador, "Olvidaste agarrar la estrella")}
 	}	
 }
 
 class BanderaFrancia inherits Bandera{
 	override method chocar(){
+		if (not game.hasVisual(estrella)){
 		banderaFranciaDeArriba.cambiarAEstrella()
 		game.addVisual(finDelJuego)
-	}
+		reloj.detener()
+		}else{game.say(jugador, "Olvidaste agarrar la estrella")}
+		}
 }

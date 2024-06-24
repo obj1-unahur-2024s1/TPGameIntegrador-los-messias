@@ -27,7 +27,11 @@ object configuracion{
 	game.cellSize(50)
 	game.title("El Messias")
 	game.boardGround("fondo.png")
-	keyboard.enter().onPressDo({nivel1.configNivel1()})
+	keyboard.enter().onPressDo({self.estaIntroduccion()})
+    }
+    
+    method estaIntroduccion(){
+    	if(game.hasVisual(imagenIntroduccion)){nivel1.configNivel1()}
     }
     
     method reiniciar(){
@@ -73,7 +77,10 @@ object teclado{
 	keyboard.up().onPressDo{jugador.saltar()}
 	keyboard.left().onPressDo{jugador.moverALaIzquierda()}
 	keyboard.right().onPressDo{jugador.moverALaDerecha()}
-	keyboard.space().onPressDo{configuracion.reiniciar()}
+	keyboard.space().onPressDo{self.estaGameOver()}
+	}
+	method estaGameOver(){
+		if(game.hasVisual(gameOver)){configuracion.reiniciar()}
 	}
 }
 

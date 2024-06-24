@@ -46,9 +46,9 @@ class Enemigo{
 		self.derechaOIzquierda()
 		if(direccionAleatoria == "Derecha"){
 			self.moverALaDerecha()
-			game.schedule(750,{self.moverALaDerecha()})
+			game.schedule(1000,{self.moverALaDerecha()})
 		}else{self.moverALaIzquierda()
-			game.schedule(750,{self.moverALaIzquierda()})
+			game.schedule(1000,{self.moverALaIzquierda()})
 		}
 		
 	}
@@ -56,13 +56,7 @@ class Enemigo{
 	method moverALaIzquierda()
 	method moverALaDerecha()
 
-	method cambiarDireccion(){
-		if(direccionAleatoria=="Derecha"){
-		self.moverALaIzquierda()}
-		else if (direccionAleatoria=="Izquierda"){
-			self.moverALaDerecha()
-		}
-	}
+	
 
 		method chocar(){
 		if (self.position()==jugador.position()){

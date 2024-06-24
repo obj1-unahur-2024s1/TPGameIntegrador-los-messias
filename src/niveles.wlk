@@ -6,6 +6,7 @@ import obstaculos.*
 import configuraciones.*
 
 
+
 object gameOver{
 	
    var property image = "gameOver.png"
@@ -27,7 +28,11 @@ object nivel1{
 	method configNivel1(){
 	  game.removeVisual(imagenIntroduccion)
 	  game.addVisual(self)
-	  keyboard.num1().onPressDo({configuracion.iniciar()})
+	  keyboard.num1().onPressDo({self.estaIntro1()})
+	  
+	}
+	method estaIntro1(){
+		if(game.hasVisual(self)){configuracion.iniciar()}
 	}
 }
 
@@ -42,8 +47,11 @@ object nivel2{
 	method iniciarNivel2(){
 	game.clear()
 	game.addVisual(introNivel2)
-	keyboard.num2().onPressDo({self.configNivel2()})
+	keyboard.num2().onPressDo({self.estaIntro2()})
+	}
 	
+	method estaIntro2(){
+		if(game.hasVisual(introNivel2)){self.configNivel2()}		
 	}
 	
 	method configNivel2(){
@@ -91,8 +99,13 @@ object nivel3{
 	method iniciarNivel3(){
 		game.clear()
 		game.addVisual(introNivel3)
-		keyboard.num3().onPressDo({self.configNivel3()})
+		keyboard.num3().onPressDo({self.estaIntro3()})
 	}
+	
+	method estaIntro3(){
+		if(game.hasVisual(introNivel3)){self.configNivel3()}		
+	}
+	
 	method configNivel3(){
 		game.removeVisual(introNivel3)
 		teclado.comandosTeclado()

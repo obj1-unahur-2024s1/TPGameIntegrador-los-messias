@@ -60,11 +60,11 @@ object jugador {
 			game.removeVisual(self.ultimaVida())
 		    vidasJugador.remove(self.ultimaVida())
 		}
-		else {gameOver.perderEtapa()}
+		else if(not game.hasVisual(gameOver)){gameOver.perderEtapa()}
 	}
 	
 	method perderPorTiempo(){
-		if(reloj.tiempoPerder()){
+		if(reloj.tiempoPerder() and not game.hasVisual(gameOver)){
 			game.addVisual(gameOver)
 		}
 	}
