@@ -8,6 +8,10 @@ const cruyff= new EnemigoHolanda(position = game.at(6,1),listaConos=[cono1,cono2
 const cruyff1= new EnemigoHolanda(position = game.at(12,5),listaConos=[cono1,cono2,cono3,cono4])
 const cruyff2= new EnemigoHolanda(position = game.at(20,9),listaConos=[cono1,cono2,cono3,cono4])
 
+const becken = new EnemigoAlemania(position = game.at(3,1), listaConos=[cono1,cono2,cono3,cono4])
+const becken1 = new EnemigoAlemania(position = game.at(3,5), listaConos=[cono1,cono2,cono3,cono4])
+const becken2 = new EnemigoAlemania(position = game.at(4,9), listaConos=[cono1,cono2,cono3,cono4])
+
 
 
 

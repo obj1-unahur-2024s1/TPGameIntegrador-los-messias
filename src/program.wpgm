@@ -3,6 +3,7 @@ import jugador.*
 import enemigos.*
 import estrella.*
 import configuraciones.*
+import obstaculos.*
 
 
 program messias {

@@ -73,7 +73,7 @@ object teclado{
 object reloj {
 	var tiempo = 0
 	
-	method tiempoPerder()= tiempo == 10
+	method tiempoPerder()= tiempo == 120
 	
 	method text() = tiempo.toString()
 	method position() = game.at(2, game.height()-1)

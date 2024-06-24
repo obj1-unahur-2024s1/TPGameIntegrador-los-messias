@@ -61,7 +61,7 @@ object jugador {
 	
 	method perderPorTiempo(){
 		if(reloj.tiempoPerder()){
-			gameOver.perderEtapa()
+			game.addVisual(gameOver)
 		}
 	}
 	

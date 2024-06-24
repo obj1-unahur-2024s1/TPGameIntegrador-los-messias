@@ -7,6 +7,7 @@ import niveles.*
 
 object estrella{
 	var contadorEstrellas = 0
+	var property position = game.at (9,1)
 	
 	method contadorEstrellas()= contadorEstrellas
 	method contadorEstrella(){
@@ -14,7 +15,6 @@ object estrella{
 	}
 	method image(){return "estrella.png"}
 	method valor() {return 1} 
-	method position(){return  game.at (9,1)}
 	}
    
 class Vida{
@@ -35,7 +35,9 @@ class Bandera{
 class BanderaHolanda inherits Bandera{
 	override method chocar(){
 		banderaHolandaDeArriba.cambiarAEstrella()
-		//pasar de nivel 
+		if (not game.hasVisual(estrella)){
+		nivel2.iniciarNivel2() }
+		
 	}
 }
 
