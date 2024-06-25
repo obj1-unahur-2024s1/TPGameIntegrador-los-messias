@@ -115,7 +115,7 @@ object jugador {
 	
 	method moverALaIzquierda(){
 		self.image("jugador.png")
-		if(position.x()>0){
+		if(position.x()>0 and not game.hasVisual(gameOver)){
 			position = position.left(1)
 			self.agarrarEstrellaSiHay()
 		}	
@@ -123,7 +123,7 @@ object jugador {
 	
 	method moverALaDerecha(){
 		self.image("jugador_mirando_derecha.png")
-		if(position.x()<24){
+		if(position.x()<24 and not game.hasVisual(gameOver)){
 			position = position.right(1)
 			self.agarrarEstrellaSiHay()
 		}
