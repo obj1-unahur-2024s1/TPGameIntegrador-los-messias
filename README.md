@@ -3,7 +3,7 @@
  Equipo de desarrollo
 - Ariel Valenzuela 
 - Santiago Rabboni
-- Juana Raffo
+- Juliana Raffo
 - Carolina Simoes 
 - Camila Pacheco 
 
