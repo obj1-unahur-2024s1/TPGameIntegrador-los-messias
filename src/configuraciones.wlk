@@ -95,12 +95,14 @@ object teclado{
 	keyboard.right().onPressDo{jugador.moverALaDerecha()}
 	keyboard.space().onPressDo{self.estaGameOver()}
 	keyboard.r().onPressDo{
-		    sonido.mutearFondo()
+		if(not game.hasVisual(finDelJuego)){sonido.mutearFondo()
 		    game.clear()
 			configuracion.introduccion()
 			banderaHolandaDeArriba.image("banderaHolanda.jpg")
 			banderaAlemaniaDeArriba.image("banderaAlemania.jpg")
-			banderaFranciaDeArriba.image("banderaFrancia.jpg")}
+			banderaFranciaDeArriba.image("banderaFrancia.jpg")
+			}
+		    }
 	}
 	method estaGameOver(){
 		if(game.hasVisual(gameOver)){configuracion.reiniciar()}
