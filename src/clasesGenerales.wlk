@@ -28,6 +28,7 @@ class Bandera{
 	method cambiarAEstrella(){
 		image = "estrella.png"
 	}
+	
 	method chocar()
 }
 
@@ -35,7 +36,9 @@ class BanderaHolanda inherits Bandera{
 	override method chocar(){
 		if (not game.hasVisual(estrella)){
 		banderaHolandaDeArriba.cambiarAEstrella()
-		nivel2.iniciarNivel2() }
+		nivel2.iniciarNivel2()
+		game.sound("Bandera.mp3").play() 
+		}
 		else{game.say(jugador, "Olvidaste agarrar la estrella")}
 	}
 }
@@ -45,6 +48,7 @@ class BanderaAlemania inherits Bandera{
 		if (not game.hasVisual(estrella)){
 			banderaAlemaniaDeArriba.cambiarAEstrella()
 			nivel3.iniciarNivel3()
+			game.sound("Bandera.mp3").play()
 		}
 		else{game.say(jugador, "Olvidaste agarrar la estrella")}
 	}	
@@ -55,7 +59,16 @@ class BanderaFrancia inherits Bandera{
 		if (not game.hasVisual(estrella)){
 		banderaFranciaDeArriba.cambiarAEstrella()
 		game.addVisual(finDelJuego)
+		game.removeVisual(jugador)
+		sonido.mutearFondo()
+		game.sound("final.mp3").play()
 		reloj.detener()
+		game.schedule(7000,{game.clear()
+			configuracion.introduccion()
+			banderaHolandaDeArriba.image("banderaHolanda.jpg")
+			banderaAlemaniaDeArriba.image("banderaAlemania.jpg")
+			banderaFranciaDeArriba.image("banderaFrancia.jpg")
+		})
 		}else{game.say(jugador, "Olvidaste agarrar la estrella")}
 		}
 }

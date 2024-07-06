@@ -18,6 +18,21 @@ object finDelJuego{
 }
 
 
+object sonido{
+	var sonido = game.sound("juego.mp3")
+   
+   method sonidoFondo(){ 
+	sonido.shouldLoop(true)
+	game.schedule(500,{sonido.play()})
+   }
+
+   method mutearFondo(){
+   	sonido.stop()
+   	sonido = game.sound("juego.mp3")
+   }
+}
+
+
 object configuracion{
 	
    method introduccion(){
@@ -27,16 +42,18 @@ object configuracion{
 	game.cellSize(50)
 	game.title("El Messias")
 	game.boardGround("fondo.png")
+	sonido.sonidoFondo()
 	keyboard.enter().onPressDo({self.estaIntroduccion()})
     }
     
     method estaIntroduccion(){
-    	if(game.hasVisual(imagenIntroduccion)){nivel1.configNivel1()}
+    	if(game.hasVisual(imagenIntroduccion)){nivel1.configNivel1()
+    	game.sound("Comienzo.mp3").play()
+    	}
     }
     
     method reiniciar(){
      game.removeVisual(gameOver)
-     reloj.detener()
      reloj.iniciar()
      jugador.reestablecer()
     }
@@ -46,15 +63,14 @@ object configuracion{
 	teclado.comandosTeclado()
 	game.removeVisual(nivel1)
 	game.addVisual(jugador)
-	game.addVisual(estrella)
+	suelo.nivelSuelo(1)
+    suelo.position(game.origin().up(suelo.nivelSuelo()))
+	estrella.position(game.at(9,1))
+	jugador.reestablecer()
 	game.addVisual(reloj)
 	game.addVisual(cruyff)
 	game.addVisual(cruyff1)
 	game.addVisual(cruyff2)
-	game.addVisual(jugador.vidasJugador().get(0))
-	game.addVisual(jugador.vidasJugador().get(1))
-	game.addVisual(jugador.vidasJugador().get(2))
-	game.addVisual(jugador.vidasJugador().get(3))
 	game.addVisual(cono1)
 	game.addVisual(cono2)
 	game.addVisual(cono3)
@@ -78,6 +94,13 @@ object teclado{
 	keyboard.left().onPressDo{jugador.moverALaIzquierda()}
 	keyboard.right().onPressDo{jugador.moverALaDerecha()}
 	keyboard.space().onPressDo{self.estaGameOver()}
+	keyboard.r().onPressDo{
+		    sonido.mutearFondo()
+		    game.clear()
+			configuracion.introduccion()
+			banderaHolandaDeArriba.image("banderaHolanda.jpg")
+			banderaAlemaniaDeArriba.image("banderaAlemania.jpg")
+			banderaFranciaDeArriba.image("banderaFrancia.jpg")}
 	}
 	method estaGameOver(){
 		if(game.hasVisual(gameOver)){configuracion.reiniciar()}
@@ -85,18 +108,18 @@ object teclado{
 }
 
 object reloj {
-	var tiempo = 0
+	var property tiempo
 	
-	method tiempoPerder()= tiempo == 100
+	method tiempoPerder()= tiempo == 0
 	
 	method text() = tiempo.toString()
 	method position() = game.at(2, game.height()-1)
 	
 	method pasarTiempo() {
-		tiempo = tiempo +1
+		tiempo = tiempo - 1
 	}
 	method iniciar(){
-		tiempo = 0
+		tiempo = 100
 		game.onTick(1000,"tiempo",{self.pasarTiempo()})
 	}
 	method detener(){

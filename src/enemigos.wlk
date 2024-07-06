@@ -55,7 +55,6 @@ class Enemigo{
 	
 	method moverALaIzquierda()
 	method moverALaDerecha()
-
 	
 
 		method chocar(){

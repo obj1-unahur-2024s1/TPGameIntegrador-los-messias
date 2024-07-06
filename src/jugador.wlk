@@ -47,6 +47,9 @@ object jugador {
 		}
 	}
 
+	method estaEnZonaSegura(){
+		return self.position()==game.at(24,1)
+	}
 	
 	method estaVivo(){
 		return not vidasJugador.isEmpty()
@@ -59,13 +62,20 @@ object jugador {
 		if( not vidasJugador.isEmpty()){
 			game.removeVisual(self.ultimaVida())
 		    vidasJugador.remove(self.ultimaVida())
+		    game.sound("perdidaVida.mp3").play()
+		    
 		}
-		else if(not game.hasVisual(gameOver)){gameOver.perderEtapa()}
+		else if(not game.hasVisual(gameOver)){gameOver.perderEtapa()
+			game.sound("sinVidas.mp3").play()
+			reloj.detener()
+		}
 	}
 	
 	method perderPorTiempo(){
 		if(reloj.tiempoPerder() and not game.hasVisual(gameOver)){
 			game.addVisual(gameOver)
+			game.sound("sinVidas.mp3").play()
+			reloj.detener()
 		}
 	}
 	
@@ -85,6 +95,7 @@ object jugador {
 	method saltar(){ 
 		if (position.y() == suelo.position().y()){
 			self.subir()
+			game.sound("salto.mp3").play()
 		if(image == "jugador.png"){
 			self.moverALaIzquierda()	
 		}else{
@@ -97,6 +108,7 @@ object jugador {
 	method agarrarEstrellaSiHay(){
 	  if (position == estrella.position() && game.hasVisual(estrella)){
 	    game.removeVisual(estrella)
+	    game.sound("estrella.mp3").play()
 	    game.say(self, "Genial, tienes la estrella")
 	  }
 	}

@@ -1,6 +1,35 @@
+import wollok.game.*
+import jugador.*
+import enemigos.*
+import clasesGenerales.*
+import configuraciones.*
 
-test "testX" {
 
-	assert.that(true)
-
+test "El jugador agarro la estrella"{
+	jugador.agarrarEstrellaSiHay()
+	assert.notThat(game.hasVisual(estrella))
 }
+test "Si se reestablece el nivel, Messi volvera a tener 4 vidas"{
+	jugador.reestablecer()
+	assert.equals(jugador.vidasJugador().size(), 4)
+}
+
+test "Messi no puede ser atacado en la posicion inicial"{
+	jugador.reestablecer()
+	assert.that(jugador.estaEnZonaSegura())
+}
+
+
+test "Cuando el reloj llega a 0, perdes"{
+	reloj.tiempo(0)
+	assert.that(reloj.tiempoPerder())
+}
+
+test "Los enemigos por nivel son distintos"{	
+	assert.notThat(cruyff2==becken)
+}
+
+test "Cruyff2 debe considerar 4 conos"{
+	assert.that(cruyff2.listaConos().size()==4)
+}
+
